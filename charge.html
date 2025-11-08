@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="pageTitle">تفاصيل الشحن</title>
+<title>شحن ببجي موبايل</title>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 </style>
     
 <style>
+  /* 🌟🌟🌟 التنسيقات المشتركة 🌟🌟🌟 */
   body {
     font-family: "Cairo", sans-serif; 
     background-color: #0b0b0b;
@@ -18,192 +19,145 @@
     padding: 0;
   }
   
-  /* 🔴 شريط التنبيه العائم (Toast) */
   .toast-notification {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #e74c3c;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    padding: 15px 0;
-    z-index: 1000;
-    transform: translateY(-100%); 
-    transition: transform 0.4s ease-in-out;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    position: fixed; top: 0; left: 0; width: 100%;
+    background-color: #e74c3c; color: white;
+    font-size: 22px; font-weight: bold; text-align: center;
+    padding: 15px 0; z-index: 1000;
+    transform: translateY(-100%); transition: transform 0.4s ease-in-out;
+    border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   }
 
-  .toast-notification.show {
-    transform: translateY(0); 
-  }
+  .toast-notification.show { transform: translateY(0); }
 
-  /* الشريط العلوي النابض مع الصورة */
+  /* 🔴 الهيدر الرفيع الزخرفي */
   .header {
-    position: relative;
+    position: relative; 
     width: 100%;
     background: linear-gradient(90deg, red, blue); 
     animation: pulseHeader 3s infinite alternate;
-    padding: 20px 0 25px 0;
+    padding: 10px 0; 
     margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   }
 
-  @keyframes pulseHeader {
-    0% { filter: brightness(1); }
-    50% { filter: brightness(1.3); }
-    100% { filter: brightness(1); }
-  }
+  @keyframes pulseHeader { 0% { filter: brightness(1); } 50% { filter: brightness(1.3); } 100% { filter: brightness(1); } }
 
+  /* ⬅️ سهم الرجوع: تم تعديل موقعه ليكون على اليسار واستبدال الأيقونة */
   .back-arrow {
     position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%) rotate(180deg);
-    font-size: 32px;
-    cursor: pointer;
-    color: white;
+    left: 15px; /* <=== التعديل هنا: moved to LEFT */
+    top: 5px; 
+    font-size: 32px; 
+    cursor: pointer; 
+    color: white; 
     z-index: 10;
+    /* لم نعد نحتاج لتدوير السهم */
+  }
+  
+  /* 🖼️ تنسيق الصورة والعنوان الجديد */
+  .game-info {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
   
   .header-image {
-    width: 100px; 
-    height: 100px;
+    width: 120px; 
+    height: 120px;
     border-radius: 12px;
     object-fit: cover;
-    border: 3px solid #ff0055;
+    border: 3px solid #ff0055; 
     margin-bottom: 10px; 
     animation: glowHeader 3s infinite alternate;
   }
   
-  @keyframes glowHeader {
-    0% { box-shadow: 0 0 10px red; }
-    50% { box-shadow: 0 0 15px blue; }
-    100% { box-shadow: 0 0 10px red; }
-  }
+  @keyframes glowHeader { 0% { box-shadow: 0 0 10px red; } 50% { box-shadow: 0 0 15px blue; } 100% { box-shadow: 0 0 10px red; } }
 
-  .header-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin: 0;
+  .game-title { 
+    font-size: 24px; 
+    font-weight: bold; 
+    color: white; 
+    margin: 0; 
   }
   
   .container {
-    max-width: 400px;
-    margin: 20px auto;
-    background: rgba(255,255,255,0.05);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px #0077ff;
+    max-width: 400px; margin: 20px auto;
+    background: rgba(255,255,255,0.05); padding: 25px;
+    border-radius: 15px; box-shadow: 0 0 15px #0077ff;
     text-align: center;
   }
   
+  /* ... (باقي التنسيقات كما هي) ... */
   .input-field {
-    width: 90%;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    text-align: center;
+    width: 90%; padding: 10px; margin: 15px 0;
+    border-radius: 8px; border: none; font-size: 16px; text-align: center;
   }
 
   .quantities {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 20px 0;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px; margin: 20px 0;
   }
 
   .quantity-btn {
     background: linear-gradient(90deg, #ff0047, #0077ff);
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    transition: transform 0.2s;
+    border: none; padding: 10px; border-radius: 8px;
+    font-size: 16px; cursor: pointer; color: white;
+    font-weight: bold; transition: transform 0.2s;
   }
 
-  .quantity-btn:hover {
-    transform: scale(1.05);
-  }
+  .quantity-btn:hover { transform: scale(1.05); }
 
-  .quantity-btn.selected {
-    border: 2px solid #00ffcc;
-    box-shadow: 0 0 10px #00ffcc;
-  }
+  .quantity-btn.selected { border: 2px solid #00ffcc; box-shadow: 0 0 10px #00ffcc; }
 
   .charge-btn {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
+    width: 100%; padding: 12px; border: none; border-radius: 8px;
     background: linear-gradient(90deg, #00c6ff, #0072ff);
-    color: #fff;
-    font-size: 18px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
+    color: #fff; font-size: 18px; cursor: pointer;
+    font-weight: bold; transition: background 0.3s ease;
   }
 
-  .charge-btn:hover {
-    background: linear-gradient(90deg, #0072ff, #00c6ff);
-  }
+  .charge-btn:hover { background: linear-gradient(90deg, #0072ff, #00c6ff); }
 
-  .footer-note {
-    margin-top: 25px;
-    font-size: 14px;
-    color: #00e0ff;
-    animation: pulseText 2s infinite alternate;
-  }
+  .footer-note { margin-top: 25px; font-size: 14px; color: #00e0ff; animation: pulseText 2s infinite alternate; }
 
-  @keyframes pulseText {
-    from { opacity: 0.5; }
-    to { opacity: 1; }
-  }
+  @keyframes pulseText { from { opacity: 0.5; } to { opacity: 1; } }
+  
+  @keyframes pulseArrow { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 </style>
 </head>
-<body onload="loadGameDetails()">
+<body>
 
   <div id="toastNotification" class="toast-notification"></div>
 
   <div class="header">
-    <div class="back-arrow" onclick="goBack()">&#10148;</div>
-    <img id="headerImage" class="header-image" alt="صورة اللعبة">
-    <div id="headerTitle" class="header-title"></div>
   </div>
   
+  <div class="back-arrow" onclick="goBack()">&#8592;</div> <div class="game-info">
+    <img src="https://seeklogo.com/images/P/pubg-mobile-logo-5E394AFBEE-seeklogo.com.png" class="header-image" alt="ببجي آيقونة">
+    <div class="game-title">شحن ببجي موبايل</div>
+  </div>
+
   <div class="container">
     
-    <div id="gameNameDisplay" style="font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #00ffcc;"></div>
+    <div style="font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #00ffcc;">ببجي موبايل</div>
 
     <input type="text" id="playerId" class="input-field" placeholder="🆔 أدخل معرف اللاعب">
 
     <div class="quantities" id="quantitiesContainer">
-      </div>
+      <button class="quantity-btn" onclick="selectQuantity(this, 60)">💎 60</button>
+      <button class="quantity-btn" onclick="selectQuantity(this, 300)">💎 300</button>
+      <button class="quantity-btn" onclick="selectQuantity(this, 600)">💎 600</button>
+      <button class="quantity-btn" onclick="selectQuantity(this, 1200)">💎 1200</button>
+    </div>
     
     <div style="font-size: 30px; margin: 10px 0; color: #00ffcc; animation: pulseArrow 1.5s infinite;">
       ⬇️
     </div>
-    <style>
-      @keyframes pulseArrow {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-      }
-    </style>
 
     <div id="priceBox" style="font-size: 18px; margin-bottom: 10px;">💰 السعر: $0.00</div>
 
@@ -214,86 +168,30 @@
 
 <script>
   let selectedAmount = null;
-  let pricePerUnit = 0; // سعر الوحدة (لنفترض أن كل 1000 نقطة بسعر ثابت)
+  const pricePerUnit = 5.00; // سعر كل 1200 وحدة في ببجي
   const playerIdInput = document.getElementById("playerId");
   const toastNotification = document.getElementById("toastNotification"); 
-  const quantitiesContainer = document.getElementById("quantitiesContainer");
   const priceBox = document.getElementById("priceBox");
-
-  // ⭐️ بيانات جميع الألعاب ⭐️
-  const gameData = {
-    'ببجي موبايل': {
-      title: 'شحن ببجي موبايل',
-      img: 'https://seeklogo.com/images/P/pubg-mobile-logo-5E394AFBEE-seeklogo.com.png',
-      amounts: [60, 300, 600, 1200],
-      price: 5.00 // سعر كل 1000 وحدة
-    },
-    'فري فاير': {
-      title: 'شحن فري فاير',
-      img: 'https://seeklogo.com/images/F/free-fire-logo-8A7B35F8A6-seeklogo.com.png',
-      amounts: [100, 530, 1080, 2200],
-      price: 4.50
-    },
-    'فورتنايت': {
-      title: 'شحن فورتنايت',
-      img: 'https://seeklogo.com/images/F/fortnite-logo-8591A6A5E3-seeklogo.com.png',
-      amounts: [1000, 2800, 5000, 13500],
-      price: 7.00
-    },
-    'كول اوف ديوتي موبايل': {
-      title: 'شحن كول اوف ديوتي موبايل',
-      img: 'https://seeklogo.com/images/C/call-of-duty-mobile-logo-7C6F8C2B6A-seeklogo.com.png',
-      amounts: [80, 400, 800, 1600],
-      price: 6.00
-    },
-    'كلاش رويال': {
-      title: 'شحن كلاش رويال',
-      img: 'https://seeklogo.com/images/C/clash-royale-logo-08B39A8D9D-seeklogo.com.png',
-      amounts: [80, 500, 1200, 2500],
-      price: 3.50
-    }
-  };
-
-  function loadGameDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameName = urlParams.get('game');
-    const game = gameData[gameName];
-
-    if (!game) {
-      document.getElementById("headerTitle").textContent = "اللعبة غير متوفرة";
-      return;
-    }
-
-    // 1. تحديث العنوان والصور
-    document.getElementById("pageTitle").textContent = game.title;
-    document.getElementById("headerTitle").textContent = game.title;
-    document.getElementById("headerImage").src = game.img;
-    document.getElementById("gameNameDisplay").textContent = gameName;
-    pricePerUnit = game.price;
-
-    // 2. تحديث الكميات والأزرار
-    quantitiesContainer.innerHTML = ''; // تفريغ الحاوية
-    game.amounts.forEach(amount => {
-      const button = document.createElement('button');
-      button.className = 'quantity-btn';
-      button.textContent = `💎 ${amount}`;
-      button.onclick = () => selectQuantity(button, amount);
-      quantitiesContainer.appendChild(button);
-    });
+  
+  function updatePriceDisplay() {
+      if (selectedAmount !== null) {
+          // حساب سعر ببجي (افتراضياً كل 1200 وحدة بـ 5.00)
+          const total = (selectedAmount / 1200) * pricePerUnit;
+          priceBox.textContent = `💰 السعر: $${total.toFixed(2)}`;
+      } else {
+          priceBox.textContent = `💰 السعر: $0.00`;
+      }
   }
 
   function selectQuantity(btn, amount) {
     document.querySelectorAll(".quantity-btn").forEach(b => b.classList.remove("selected"));
     btn.classList.add("selected");
     selectedAmount = amount;
-    
-    // حساب السعر الجديد
-    const total = (selectedAmount / 1000) * pricePerUnit;
-    priceBox.textContent = `💰 السعر: $${total.toFixed(2)}`;
+    updatePriceDisplay();
   }
 
   function goBack() {
-    // العودة إلى الصفحة الرئيسية (قائمة الألعاب)
+    // العودة إلى صفحة القائمة الرئيسية
     window.location.href = `index.html`; 
   }
 
@@ -309,23 +207,21 @@
 
   function chargeNow() {
     const playerId = playerIdInput.value.trim();
-
-    // 1. التحقق من إيدي المستخدم
     if (!playerId) {
       showToast("يجب وضع ايدي المستخدم");
       playerIdInput.focus();
       return;
     }
 
-    // 2. التحقق من الكمية المختارة
     if (selectedAmount === null) { 
       showToast("يجب وضع الكمية");
       return;
     }
 
-    // 3. إذا كانت جميع المدخلات صحيحة، نظهر رسالة "الرصيد غير كاف"
     showToast("رصيدك غير كاف"); 
   }
+
+  document.addEventListener('DOMContentLoaded', updatePriceDisplay);
 </script>
 
 </body>
