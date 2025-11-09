@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>قائمة شحن الألعاب</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+</style>
+    
 <style>
   body {
     font-family: "Cairo", sans-serif;
@@ -116,6 +121,8 @@
 
 <script>
   function openGame(game) {
+    // 🌟 هذا الرابط يوجه إلى ملف charge.html ويمرر اسم اللعبة
+    // هذا ضروري لكي يعمل الكود الديناميكي في charge.html
     window.location.href = `charge.html?game=${encodeURIComponent(game)}`;
   }
 
@@ -124,8 +131,10 @@
     const query = this.value.toLowerCase();
     const games = document.querySelectorAll(".game-card");
     games.forEach(game => {
-      const name = game.textContent.toLowerCase();
-      game.style.display = name.includes(query) ? "block" : "none";
+      // نستخدم .querySelector('.game-name') للوصول إلى اسم اللعبة بدقة
+      const name = game.querySelector('.game-name').textContent.toLowerCase();
+      // "" تعيد العنصر إلى وضعه الافتراضي (Grid)
+      game.style.display = name.includes(query) ? "" : "none";
     });
   });
 </script>
