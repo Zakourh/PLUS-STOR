@@ -47,18 +47,29 @@
 
   @keyframes pulseHeader { 0% { filter: brightness(1); } 50% { filter: brightness(1.3); } 100% { filter: brightness(1); } }
 
-  /* ⬅️ سهم الرجوع: على اليسار ومرتبط بالهيدر */
+  /* ⬅️ سهم الرجوع: تصميم المثلث الأبيض كما في الصورة */
   .back-arrow {
     position: absolute;
     left: 15px; 
     top: 50%;
     transform: translateY(-50%); 
-    font-size: 32px; 
     cursor: pointer; 
-    color: white; 
     z-index: 10;
+    
+    /* 🌟🌟🌟 التعديلات الجديدة لشكل السهم 🌟🌟🌟 */
+    width: 30px;
+    height: 30px;
+    line-height: 30px; /* توسيط عمودي */
+    text-align: center;
+    font-size: 20px; /* حجم السهم/الأيقونة */
+    color: white;
+    /* تم استبدال الأيقونة برمز المثلث */
   }
   
+  /* إذا أردت تصميم سهم أكثر تعقيدًا يشبه المثلث داخل دائرة، فهذا يتطلب استخدام SVG أو أيقونة صورية. 
+  لكن هذا التصميم هو الأقرب باستخدام رموز بسيطة. */
+
+
   .header-main-title {
     font-size: 26px; 
     font-weight: bold; 
@@ -140,7 +151,7 @@
   <div id="toastNotification" class="toast-notification"></div>
 
   <div class="header">
-    <div class="back-arrow" onclick="goBack()">&#8592;</div>
+    <div class="back-arrow" onclick="goBack()">&#9664;</div> 
     <div id="headerMainTitle" class="header-main-title">شحن اللعبة</div>
   </div>
   
@@ -170,7 +181,7 @@
 <script>
   let selectedAmount = null;
   let pricePerUnit = 0; 
-  let unitsPerDollar = 1; // الوحدات التي تمثل السعر الأساسي (مثلاً 1000 وحدة)
+  let unitsPerDollar = 1; 
   const playerIdInput = document.getElementById("playerId");
   const toastNotification = document.getElementById("toastNotification"); 
   const quantitiesContainer = document.getElementById("quantitiesContainer");
@@ -182,35 +193,35 @@
       title: 'شحن ببجي موبايل',
       img: 'https://seeklogo.com/images/P/pubg-mobile-logo-5E394AFBEE-seeklogo.com.png',
       amounts: [60, 300, 600, 1200],
-      price: 5.00, // سعر كل 1200 وحدة
+      price: 5.00, 
       baseUnits: 1200
     },
     'فري فاير': {
       title: 'شحن فري فاير',
       img: 'https://seeklogo.com/images/F/free-fire-logo-8A7B35F8A6-seeklogo.com.png',
       amounts: [100, 530, 1080, 2200],
-      price: 4.50, // سعر كل 1080 وحدة
+      price: 4.50, 
       baseUnits: 1080
     },
     'فورتنايت': {
       title: 'شحن فورتنايت',
       img: 'https://seeklogo.com/images/F/fortnite-logo-8591A6A5E3-seeklogo.com.png',
       amounts: [1000, 2800, 5000, 13500],
-      price: 7.00, // سعر كل 1000 وحدة
+      price: 7.00, 
       baseUnits: 1000
     },
     'كول اوف ديوتي موبايل': {
       title: 'شحن كول اوف ديوتي موبايل',
       img: 'https://seeklogo.com/images/C/call-of-duty-mobile-logo-7C6F8C2B6A-seeklogo.com.png',
       amounts: [80, 400, 800, 1600],
-      price: 6.00, // سعر كل 800 وحدة
+      price: 6.00, 
       baseUnits: 800
     },
     'كلاش رويال': {
       title: 'شحن كلاش رويال',
       img: 'https://seeklogo.com/images/C/clash-royale-logo-08B39A8D9D-seeklogo.com.png',
       amounts: [80, 500, 1200, 2500],
-      price: 3.50, // سعر كل 1200 وحدة
+      price: 3.50, 
       baseUnits: 1200
     }
   };
@@ -245,13 +256,11 @@
       quantitiesContainer.appendChild(button);
     });
     
-    // إعادة تعيين السعر عند تحميل الصفحة
     updatePriceDisplay();
   }
 
   function updatePriceDisplay() {
       if (selectedAmount !== null) {
-          // حساب السعر بناءً على سعر الوحدات الأساسية
           const total = (selectedAmount / unitsPerDollar) * pricePerUnit;
           priceBox.textContent = `💰 السعر: $${total.toFixed(2)}`;
       } else {
@@ -267,7 +276,6 @@
   }
 
   function goBack() {
-    // العودة إلى الصفحة الرئيسية (قائمة الألعاب)
     window.location.href = `index.html`; 
   }
 
