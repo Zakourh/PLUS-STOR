@@ -48,8 +48,9 @@
 
   .games-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    /* زدت الأعمدة لتظهر المزيد من الألعاب */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+    gap: 15px;
     padding: 20px;
   }
 
@@ -57,7 +58,7 @@
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     text-align: center;
-    padding: 15px;
+    padding: 10px; /* قللت البادينغ ليتناسب مع العدد الكبير */
     cursor: pointer;
     animation: glow 3s infinite alternate;
     transition: transform 0.3s ease;
@@ -68,22 +69,23 @@
   }
 
   @keyframes glow {
-    0% { box-shadow: 0 0 10px #ff0047; }
-    50% { box-shadow: 0 0 15px #0077ff; }
-    100% { box-shadow: 0 0 10px #ff0047; }
+    0% { box-shadow: 0 0 8px #ff0047; }
+    50% { box-shadow: 0 0 12px #0077ff; }
+    100% { box-shadow: 0 0 8px #ff0047; }
   }
 
   .game-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 10px;
+    width: 100px; /* قللت حجم الصورة */
+    height: 100px;
+    border-radius: 8px;
     object-fit: cover;
     border: 3px solid white;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .game-name {
-    font-size: 18px;
+    font-size: 15px; /* قللت حجم الخط */
+    font-weight: 700;
   }
 </style>
 </head>
@@ -93,30 +95,139 @@
   <input type="text" id="searchInput" class="search-bar" placeholder="🔍 ابحث عن لعبة...">
 
   <div class="games-container" id="gamesContainer">
-    <div class="game-card" onclick="openGame('ببجي موبايل')">
+    <div class="game-card" onclick="openGame('شحن بيجي عالمي')">
       <img src="https://seeklogo.com/images/P/pubg-mobile-logo-5E394AFBEE-seeklogo.com.png" class="game-image">
-      <div class="game-name">ببجي موبايل</div>
+      <div class="game-name">شحن بيجي عالمي</div>
     </div>
-
-    <div class="game-card" onclick="openGame('فري فاير')">
+    <div class="game-card" onclick="openGame('شحن بيجي تركي')">
+      <img src="https://i.imgur.com/gL8yR9j.png" class="game-image"> <div class="game-name">شحن بيجي تركي</div>
+    </div>
+    <div class="game-card" onclick="openGame('بيجي لايت')">
+      <img src="https://seeklogo.com/images/P/pubg-lite-logo-E923C91079-seeklogo.com.png" class="game-image">
+      <div class="game-name">بيجي لايت</div>
+    </div>
+    <div class="game-card" onclick="openGame('FREE FIRE')">
       <img src="https://c.top4top.io/p_3600a1rke9.jpg" class="game-image">
-      <div class="game-name">فري فاير</div>
+      <div class="game-name">FREE FIRE</div>
     </div>
-
-    <div class="game-card" onclick="openGame('فورتنايت')">
-      <img src="https://seeklogo.com/images/F/fortnite-logo-8591A6A5E3-seeklogo.com.png" class="game-image">
-      <div class="game-name">فورتنايت</div>
+    <div class="game-card" onclick="openGame('SHIPMENT YALLA LUDO')">
+      <img src="https://seeklogo.com/images/Y/yalla-ludo-logo-9ED76E2A78-seeklogo.com.png" class="game-image">
+      <div class="game-name">SHIPMENT YALLA LUDO</div>
     </div>
-
-    <div class="game-card" onclick="openGame('كول اوف ديوتي موبايل')">
+    <div class="game-card" onclick="openGame('CLASH OF CLAN')">
+      <img src="https://seeklogo.com/images/C/clash-of-clans-logo-4E38F97E43-seeklogo.com.png" class="game-image">
+      <div class="game-name">CLASH OF CLAN</div>
+    </div>
+    <div class="game-card" onclick="openGame('JAWAKER')">
+      <img src="https://seeklogo.com/images/J/jawaker-logo-273D1E4B92-seeklogo.com.png" class="game-image">
+      <div class="game-name">JAWAKER</div>
+    </div>
+    <div class="game-card" onclick="openGame('8Ball Pool Coins')">
+      <img src="https://seeklogo.com/images/8/8-ball-pool-logo-2ED1832C64-seeklogo.com.png" class="game-image">
+      <div class="game-name">8Ball Pool Coins</div>
+    </div>
+    <div class="game-card" onclick="openGame('mobile legends')">
+      <img src="https://seeklogo.com/images/M/mobile-legends-logo-30D1C90647-seeklogo.com.png" class="game-image">
+      <div class="game-name">mobile legends</div>
+    </div>
+    <div class="game-card" onclick="openGame('call of duty mobile')">
       <img src="https://seeklogo.com/images/C/call-of-duty-mobile-logo-7C6F8C2B6A-seeklogo.com.png" class="game-image">
-      <div class="game-name">كول اوف ديوتي موبايل</div>
+      <div class="game-name">call of duty mobile</div>
+    </div>
+    <div class="game-card" onclick="openGame('FC MOBILE')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">FC MOBILE</div>
+    </div>
+    <div class="game-card" onclick="openGame('Genshin Impact')">
+      <img src="https://seeklogo.com/images/G/genshin-impact-logo-2F4D59E0F3-seeklogo.com.png" class="game-image">
+      <div class="game-name">Genshin Impact</div>
+    </div>
+    <div class="game-card" onclick="openGame('انتقام السلاطين')">
+      <img src="https://i.imgur.com/G5Z5LwT.png" class="game-image"> <div class="game-name">انتقام السلاطين</div>
+    </div>
+    <div class="game-card" onclick="openGame('weplay')">
+      <img src="https://i.imgur.com/Q9R9X8D.png" class="game-image"> <div class="game-name">weplay</div>
+    </div>
+    <div class="game-card" onclick="openGame('Blood Strike')">
+      <img src="https://i.imgur.com/xH5U1Xn.png" class="game-image"> <div class="game-name">Blood Strike</div>
+    </div>
+    <div class="game-card" onclick="openGame('King Of Avalon')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">King Of Avalon</div>
+    </div>
+    <div class="game-card" onclick="openGame('ROBLOX')">
+      <img src="https://seeklogo.com/images/R/roblox-logo-7B27C171FC-seeklogo.com.png" class="game-image">
+      <div class="game-name">ROBLOX</div>
+    </div>
+    <div class="game-card" onclick="openGame('DELTA FORCE')">
+      <img src="https://i.imgur.com/Q9R9X8D.png" class="game-image"> <div class="game-name">DELTA FORCE</div>
+    </div>
+    <div class="game-card" onclick="openGame('WAR ROBOTS')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">WAR ROBOTS</div>
+    </div>
+    <div class="game-card" onclick="openGame('INFINITY KINGDOM')">
+      <img src="https://i.imgur.com/xH5U1Xn.png" class="game-image"> <div class="game-name">INFINITY KINGDOM</div>
+    </div>
+    <div class="game-card" onclick="openGame('MERGE KINGDOM')">
+      <img src="https://i.imgur.com/G5Z5LwT.png" class="game-image"> <div class="game-name">MERGE KINGDOM</div>
+    </div>
+    <div class="game-card" onclick="openGame('FARLIGHT')">
+      <img src="https://i.imgur.com/Q9R9X8D.png" class="game-image"> <div class="game-name">FARLIGHT</div>
+    </div>
+    <div class="game-card" onclick="openGame('LORDS MOBILE')">
+      <img src="https://seeklogo.com/images/L/lords-mobile-logo-C70F7E0436-seeklogo.com.png" class="game-image">
+      <div class="game-name">LORDS MOBILE</div>
+    </div>
+    <div class="game-card" onclick="openGame('ARENA BREAKOUT')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">ARENA BREAKOUT</div>
+    </div>
+    <div class="game-card" onclick="openGame('Zenless Zone Zero')">
+      <img src="https://i.imgur.com/xH5U1Xn.png" class="game-image"> <div class="game-name">Zenless Zone Zero</div>
+    </div>
+    <div class="game-card" onclick="openGame('State Of Survival')">
+      <img src="https://i.imgur.com/G5Z5LwT.png" class="game-image"> <div class="game-name">State Of Survival</div>
+    </div>
+    <div class="game-card" onclick="openGame('whiteout survival')">
+      <img src="https://i.imgur.com/Q9R9X8D.png" class="game-image"> <div class="game-name">whiteout survival</div>
+    </div>
+    <div class="game-card" onclick="openGame('pubg Global codes')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">pubg Global codes</div>
+    </div>
+    <div class="game-card" onclick="openGame('PUBG New State')">
+      <img src="https://i.imgur.com/xH5U1Xn.png" class="game-image"> <div class="game-name">PUBG New State</div>
+    </div>
+    <div class="game-card" onclick="openGame('clash royale')">
+      <img src="https://seeklogo.com/images/C/clash-royale-logo-08B39A8D9D-seeklogo.com.png" class="game-image">
+      <div class="game-name">clash royale</div>
+    </div>
+    <div class="game-card" onclick="openGame('HERO CLASH')">
+      <img src="https://i.imgur.com/G5Z5LwT.png" class="game-image"> <div class="game-name">HERO CLASH</div>
+    </div>
+    <div class="game-card" onclick="openGame('IDENTITY V')">
+      <img src="https://i.imgur.com/Q9R9X8D.png" class="game-image"> <div class="game-name">IDENTITY V</div>
+    </div>
+    <div class="game-card" onclick="openGame('HONOR OF KINGS')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">HONOR OF KINGS</div>
+    </div>
+    <div class="game-card" onclick="openGame('Knives Out')">
+      <img src="https://i.imgur.com/xH5U1Xn.png" class="game-image"> <div class="game-name">Knives Out</div>
+    </div>
+    <div class="game-card" onclick="openGame('Guns Of Glory')">
+      <img src="https://i.imgur.com/G5Z5LwT.png" class="game-image"> <div class="game-name">Guns Of Glory</div>
+    </div>
+    <div class="game-card" onclick="openGame('Immortal Kingdoms M')">
+      <img src="https://i.imgur.com/Q9R9X8D.png" class="game-image"> <div class="game-name">Immortal Kingdoms M</div>
+    </div>
+    <div class="game-card" onclick="openGame('Life After')">
+      <img src="https://i.imgur.com/v8tT7Fk.png" class="game-image"> <div class="game-name">Life After</div>
+    </div>
+    <div class="game-card" onclick="openGame('Project Entropy')">
+      <img src="https://i.imgur.com/xH5U1Xn.png" class="game-image"> <div class="game-name">Project Entropy</div>
     </div>
 
-    <div class="game-card" onclick="openGame('كلاش رويال')">
-      <img src="https://seeklogo.com/images/C/clash-royale-logo-08B39A8D9D-seeklogo.com.png" class="game-image">
-      <div class="game-name">كلاش رويال</div>
+    <div class="game-card" onclick="openGame('State Of Survival')"> 
+      <img src="https://i.imgur.com/G5Z5LwT.png" class="game-image">
+      <div class="game-name">State Of Survival</div>
     </div>
+
   </div>
 
 <script>
