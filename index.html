@@ -189,11 +189,6 @@
     const query = this.value.toLowerCase();
     const games = document.querySelectorAll(".game-card");
     games.forEach(game => {
-      // نستخدم .querySelector('.game-name') للوصول إلى اسم اللعبة بدقة
-      const name = game.querySelector('.game-name').textContent.toLowerCase();
-      // "" تعيد العنصر إلى وضعه الافتراضي (Grid)
-      game.style.display = name.includes(query) ? "" : "none";
-    });
   });
 </script>
 
