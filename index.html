@@ -173,14 +173,14 @@
       <img src="https://i.ibb.co/nqm5LZTw/Screenshot-Google.jpg" class="game-image"> <div class="game-name">FARLIGHT</div>
     </div>
     <div class="game-card" onclick="openGame('LORDS MOBILE')">
-      <img src="https://seeklogo.com/images/L/lords-mobile-logo-C70F7E04
-    <
-        </div>
+      <img src="https://seeklogo.com/images/L/lords-mobile-logo-C70F7E04-seeklogo.com.png" class="game-image">
+      <div class="game-name">LORDS MOBILE</div>
+    </div>
+  </div>
 
 <script>
   function openGame(game) {
     // 🌟 هذا الرابط يوجه إلى ملف charge.html ويمرر اسم اللعبة
-    // هذا ضروري لكي يعمل الكود الديناميكي في charge.html
     window.location.href = `charge.html?game=${encodeURIComponent(game)}`;
   }
 
@@ -188,7 +188,15 @@
   document.getElementById("searchInput").addEventListener("input", function() {
     const query = this.value.toLowerCase();
     const games = document.querySelectorAll(".game-card");
+    
     games.forEach(game => {
+      const gameName = game.querySelector(".game-name").textContent.toLowerCase();
+      if (gameName.includes(query)) {
+        game.style.display = "block";
+      } else {
+        game.style.display = "none";
+      }
+    });
   });
 </script>
 
