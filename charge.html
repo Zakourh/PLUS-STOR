@@ -185,13 +185,12 @@
     // 2. المتغيرات والقيم الافتراضية
     let selectedAmount = null;
 
-    // بيانات المنتجات الافتراضية (يمكنك تخصيصها لكل لعبة)
+    // بيانات المنتجات الافتراضية (تم إرجاع خيارات الكمية هنا)
     const gameData = {
-        // هذه البيانات تجعل الصفحة تعمل بغض النظر عن اللعبة
         'default': {
-            unitsPerDollar: 10, // مثال: كل 10 وحدات مقابل 1 دولار
-            pricePerUnit: 1,    // سعر الوحدة الأساسي
-            quantities: [50, 100, 200, 500, 1000] // الوحدات المتاحة للشراء
+            unitsPerDollar: 10, 
+            pricePerUnit: 1,    
+            quantities: [50, 100, 200, 500, 1000] // الكميات الافتراضية
         },
         'FREE FIRE': {
             unitsPerDollar: 50,
@@ -216,17 +215,17 @@
     // 4. تهيئة الصفحة
     function initializePage() {
         const gameName = getUrlParameter('game');
-        // استخدام بيانات اللعبة المحددة أو البيانات الافتراضية
         const data = gameData[gameName] || gameData['default'];
         
         // تحديث العنوان
         gameHeader.textContent = `🎮 شحن ${gameName}`;
 
-        // إنشاء أزرار الكميات
+        // إنشاء أزرار الكميات (هذا هو الجزء الذي يقوم بعرضها)
         data.quantities.forEach(amount => {
             const btn = document.createElement('button');
             btn.className = 'quantity-btn';
             btn.textContent = `${amount} نقطة`;
+            // تمرير جميع المتغيرات اللازمة لتحديث السعر
             btn.onclick = () => selectQuantity(btn, amount, data.unitsPerDollar, data.pricePerUnit);
             quantitiesContainer.appendChild(btn);
         });
@@ -235,8 +234,6 @@
     // 5. تحديث السعر
     function updatePriceDisplay(selectedAmount, unitsPerDollar, pricePerUnit) {
         if (selectedAmount !== null && unitsPerDollar && pricePerUnit) {
-            // formula: (selectedAmount / unitsPerDollar) * pricePerUnit 
-            // حيث pricePerUnit هو السعر الأساسي لوحدة القياس في gameData
             const total = (selectedAmount / unitsPerDollar) * pricePerUnit;
             priceBox.textContent = `💰 السعر: $${total.toFixed(2)}`;
         } else {
@@ -244,13 +241,13 @@
         }
     }
 
-    // 6. اختيار الكمية
+    // 6. اختيار الكمية (هذا هو الجزء الذي يتم استدعاؤه عند الضغط على الزر)
     function selectQuantity(btn, amount, unitsPerDollar, pricePerUnit) {
         document.querySelectorAll(".quantity-btn").forEach(b => b.classList.remove("selected"));
         btn.classList.add("selected");
-        selectedAmount = amount; // تحديث الكمية المختارة
+        selectedAmount = amount; 
         
-        // إعادة حساب وعرض السعر بناءً على البيانات الجديدة
+        // إعادة حساب وعرض السعر
         updatePriceDisplay(selectedAmount, unitsPerDollar, pricePerUnit);
     }
     
@@ -285,8 +282,6 @@
             return;
         }
 
-        // --- هنا تبدأ عملية الدفع الحقيقية ---
-        
         // جلب البيانات مرة أخرى لحساب السعر الفعلي للشحن
         const gameName = getUrlParameter('game');
         const data = gameData[gameName] || gameData['default'];
@@ -294,9 +289,7 @@
         
         const message = `تم طلب شحن ${selectedAmount} نقطة لـ ID: ${playerId} بتكلفة $${totalCost.toFixed(2)}.`;
         
-        // رسالة اختبار: يمكنك تغييرها حسب نظام الدفع الخاص بك
         showToast(`⚠️ ${message} - رصيدك غير كاف حاليًا`, false); 
-        // أو إذا نجحت: showToast(`✅ تم إرسال طلب الشحن بنجاح! ${message}`, true);
     }
 
     // تشغيل تهيئة الصفحة عند التحميل
