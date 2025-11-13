@@ -1,470 +1,306 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="pageTitle">شحن الألعاب</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
-</style>
-    
-<style>
-  body {
-    font-family: "Cairo", sans-serif;
-    background-color: #0d0d0d;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الشحن</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
-  .header {
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    background: linear-gradient(90deg, #ff0047, #0077ff);
-    margin-bottom: 20px;
-  }
+        body {
+            font-family: "Cairo", sans-serif;
+            background-color: #0d0d0d;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
 
-  .game-details {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
 
-  #gameImage {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-  }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff0047;
+        }
 
-  #gameTitleSecondary {
-    display: block;
-    font-size: 18px;
-    margin-top: 5px;
-    color: #0077ff;
-  }
+        .input-group, .quantity-selection, .charge-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-  .section-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ff0047;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    width: 90%;
-    text-align: right;
-  }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #0077ff;
+        }
 
-  .input-field {
-    width: 90%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 2px solid #ff0047;
-    background-color: #1a1a1a;
-    color: #fff;
-    font-size: 16px;
-    text-align: right;
-    margin-bottom: 20px;
-  }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            text-align: right;
+        }
 
-  .quantities-container {
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+        .quantities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-  .quantity-btn {
-    flex-grow: 1;
-    padding: 10px 15px;
-    border: 2px solid #0077ff;
-    background-color: #1a1a1a;
-    color: #fff;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.2s, border-color 0.2s;
-    min-width: 100px;
-    max-width: 48%;
-  }
+        .quantity-btn {
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+        }
 
-  .quantity-btn:hover {
-    background-color: #0077ff30;
-  }
+        .quantity-btn:hover {
+            background-color: #34495e;
+        }
 
-  .quantity-btn.selected {
-    background-color: #ff0047;
-    border-color: #fff;
-    font-weight: bold;
-  }
+        .quantity-btn.selected {
+            background-color: #e74c3c;
+            border: 2px solid #fff;
+        }
 
-  #priceBox {
-    background-color: #2c3e50;
-    color: #f1c40f;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    width: 90%;
-    text-align: center;
-  }
+        .price-display {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #2ecc71;
+            margin-top: 15px;
+        }
 
-  .charge-btn {
-    width: 90%;
-    padding: 15px;
-    background-color: #2ecc71;
-    color: #0d0d0d;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.2s;
-  }
+        .charge-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #0077ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 700;
+        }
 
-  .charge-btn:hover {
-    background-color: #27ae60;
-  }
+        .charge-btn:hover {
+            background-color: #0056b3;
+        }
 
-  .back-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #34495e;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-  }
+        .back-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            background: #e74c3c;
+            border-radius: 8px;
+        }
 
-  /* Toast Notification */
-  #toastNotification {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #e74c3c;
-    color: #fff;
-    text-align: center;
-    border-radius: 8px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    bottom: 30px;
-    font-size: 17px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  }
+        .toast-notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            right: 20px;
+            bottom: 30px;
+            font-size: 17px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-  #toastNotification.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
+        .toast-notification.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
 
-  @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
-  }
-
-  @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-  }
-
-  @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
-  }
-
-  @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
-</style>
+        @-webkit-keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        @-webkit-keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+        @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+    </style>
 </head>
-<body onload="loadGameDetails()">
+<body>
 
-  <div class="header" id="headerMainTitle">🎮 شحن الألعاب</div>
+<div class="container">
+    <div class="header" id="gameHeader">🎮 شحن </div>
 
-  <div class="game-details">
-    <img id="gameImage" src="" alt="صورة اللعبة">
-    <span id="gameTitleSecondary"></span>
-  </div>
-
-  <div class="section-title">1. أدخل الآيدي (ID)</div>
-  <input type="text" id="playerIdInput" class="input-field" placeholder="👤 آيدي المستخدم هنا...">
-
-  <div class="section-title">2. اختر كمية الشحن</div>
-  <div class="quantities-container" id="quantitiesContainer">
+    <div class="input-group">
+        <label for="playerIdInput">إيدي المستخدم (ID)</label>
+        <input type="text" id="playerIdInput" placeholder="أدخل إيدي المستخدم هنا" required>
     </div>
 
-  <div id="priceBox">💰 السعر: $0.00</div>
+    <div class="quantity-selection">
+        <label>اختر الكمية المطلوبة:</label>
+        <div class="quantities" id="quantitiesContainer">
+            </div>
+        <div class="price-display" id="priceBox">💰 السعر: $0.00</div>
+    </div>
 
-  <button class="charge-btn" onclick="chargeNow()">🚀 اشحن الآن</button>
+    <div class="charge-section">
+        <button class="charge-btn" onclick="chargeNow()">شحن الآن</button>
+    </div>
+    
+    <a href="#" class="back-btn" onclick="goBack()">العودة إلى قائمة الألعاب</a>
 
-  <button class="back-btn" onclick="goBack()">رجوع إلى القائمة</button>
+</div>
 
-  <div id="toastNotification"></div>
+<div id="toastNotification" class="toast-notification"></div>
 
 <script>
-  // ** المتغيرات العامة **
-  let selectedAmount = null;
-  let pricePerUnit = 0;
-  let unitsPerDollar = 0;
+    // 1. تحديد العناصر الأساسية
+    const gameHeader = document.getElementById('gameHeader');
+    const quantitiesContainer = document.getElementById('quantitiesContainer');
+    const priceBox = document.getElementById('priceBox');
+    const playerIdInput = document.getElementById('playerIdInput');
+    const toastNotification = document.getElementById('toastNotification');
 
-  // الوصول للعناصر
-  const quantitiesContainer = document.getElementById('quantitiesContainer');
-  const playerIdInput = document.getElementById('playerIdInput');
-  const priceBox = document.getElementById('priceBox');
-  const toastNotification = document.getElementById('toastNotification');
+    // 2. المتغيرات والقيم الافتراضية
+    let selectedAmount = null;
 
-  // ** كائن البيانات المُحدَّث والمنسق بشكل صحيح **
-  const gameData = {
-    'شحن بيجي عالمي': {
-      title: 'شحن ببجي موبايل عالمي',
-      img: 'https://i.ibb.co/ZRgM0C6P/Screenshot-Google.jpg',
-      amounts: [60, 325, 660, 1800, 3850],
-      price: 10.00, 
-      baseUnits: 660
-    },
-    'شحن بيجي تركي': {
-      title: 'شحن ببجي موبايل تركي',
-      img: 'https://i.ibb.co/ZRgM0C6P/Screenshot-Google.jpg',
-      amounts: [30, 150, 300, 840, 1800],
-      price: 8.00, 
-      baseUnits: 840
-    },
-    'بيجي لايت': {
-      title: 'شحن ببجي لايت',
-      img: 'https://i.ibb.co/ZRgM0C6P/Screenshot-Google.jpg',
-      amounts: [60, 300, 600, 1500, 3000],
-      price: 5.50, 
-      baseUnits: 600
-    },
-    'FREE FIRE': {
-      title: 'شحن فري فاير',
-      img: 'https://i.ibb.co/xtvDQHtz/free-fire-dimaonds-1.webp',
-      amounts: [100, 300, 520, 1060, 2180],
-      price: 5.00, 
-      baseUnits: 520
-    },
-    'SHIPMENT YALLA LUDO': {
-      title: 'شحن يلا لودو',
-      img: 'https://i.ibb.co/23whVTgZ/images-32.jpg',
-      amounts: [10, 50, 100, 300],
-      price: 4.00, 
-      baseUnits: 100
-    },
-    'CLASH OF CLAN': {
-      title: 'شحن كلاش اوف كلانز',
-      img: 'https://i.ibb.co/XxCtyVfk/images-33.jpg',
-      amounts: [500, 1200, 2500, 6500],
-      price: 8.50, 
-      baseUnits: 1200
-    },
-    'JAWAKER': {
-      title: 'شحن جواكر',
-      img: 'https://i.ibb.co/6cNXXNbC/Screenshot-Google.jpg',
-      amounts: [1000, 5000, 10000, 50000],
-      price: 3.00, 
-      baseUnits: 10000
-    },
-    '8Ball Pool Coins': {
-      title: 'شحن كوينز 8Ball Pool',
-      img: 'https://i.ibb.co/cShJ0x4k/images-34.jpg',
-      amounts: [100000, 500000, 1000000, 5000000],
-      price: 4.50, 
-      baseUnits: 1000000
-    },
-    'mobile legends': {
-      title: 'شحن موبايل ليجندز',
-      img: 'https://i.ibb.co/mV1qPxZp/images-36.jpg',
-      amounts: [100, 300, 500, 1000, 1500],
-      price: 6.00, 
-      baseUnits: 500
-    },
-    'call of duty mobile': {
-      title: 'شحن كول اوف ديوتي موبايل',
-      img: 'https://i.ibb.co/MyyTnYy2/call-of-duty-mobile-2400-point.png',
-      amounts: [80, 400, 800, 1600, 4000],
-      price: 6.00, 
-      baseUnits: 800
-    },
-    'FC MOBILE': {
-      title: 'شحن إي إي سبورتس إف سي موبايل',
-      img: 'https://i.imgur.com/v8tT7Fk.png',
-      amounts: [100, 500, 1000, 2500],
-      price: 5.50, 
-      baseUnits: 1000
-    },
-    'Genshin Impact': {
-      title: 'شحن جينشين إمباكت',
-      img: 'https://seeklogo.com/images/G/genshin-impact-logo-2F4D59E0F3-seeklogo.com.png',
-      amounts: [60, 300, 980, 1980],
-      price: 12.00, 
-      baseUnits: 980
-    },
-    'انتقام السلاطين': {
-      title: 'شحن انتقام السلاطين',
-      img: 'https://i.imgur.com/G5Z5LwT.png',
-      amounts: [600, 3000, 6000, 15000],
-      price: 7.00, 
-      baseUnits: 6000
-    },
-    'weplay': {
-      title: 'شحن وي بلاي',
-      img: 'https://i.ibb.co/SSpp3dS/Screenshot-Google.jpg',
-      amounts: [60, 300, 600, 1800],
-      price: 3.50, 
-      baseUnits: 600
-    },
-    'Blood Strike': {
-      title: 'شحن بلود سترايك',
-      img: 'https://i.ibb.co/GQTkC1YR/Screenshot-Google.jpg',
-      amounts: [100, 500, 1000, 2000],
-      price: 4.00, 
-      baseUnits: 1000
-    },
-    'King Of Avalon': {
-      title: 'شحن كينغ اوف أفالون',
-      img: 'https://i.ibb.co/7tB4CqXk/Screenshot-Google.jpg',
-      amounts: [1000, 5000, 10000, 25000],
-      price: 6.50, 
-      baseUnits: 10000
-    },
-    'ROBLOX': {
-      title: 'شحن روبلوكس (روبوكس)',
-      img: 'https://i.ibb.co/5V5kyTN/Screenshot-Google.jpg',
-      amounts: [400, 800, 1700, 4500],
-      price: 10.00, 
-      baseUnits: 800
-    },
-    'DELTA FORCE': {
-      title: 'شحن دلتا فورس',
-      img: 'https://i.ibb.co/QjC99KrB/Screenshot-Google.jpg',
-      amounts: [100, 500, 1000, 3000],
-      price: 5.00, 
-      baseUnits: 1000
-    },
-    'WAR ROBOTS': {
-      title: 'شحن وور روبوتس',
-      img: 'https://i.ibb.co/QFHZZYL7/Screenshot-Google.jpg',
-      amounts: [1000, 5000, 15000, 30000],
-      price: 4.00, 
-      baseUnits: 5000
-    },
-    'INFINITY KINGDOM': {
-      title: 'شحن إنفينيتي كينغدوم',
-      img: 'https://i.ibb.co/MkpvKsc2/Screenshot-Google.jpg',
-      amounts: [100, 500, 1000, 2500],
-      price: 5.50, 
-      baseUnits: 1000
-    },
-    'MERGE KINGDOM': {
-      title: 'شحن ميرج كينغدوم',
-      img: 'https://i.ibb.co/7xWqMXFd/Screenshot-Google.jpg',
-      amounts: [100, 500, 1000, 2000],
-      price: 3.50, 
-      baseUnits: 500
-    },
-    'FARLIGHT': {
-      title: 'شحن فارلايت',
-      img: 'https://i.ibb.co/nqm5LZTw/Screenshot-Google.jpg',
-      amounts: [100, 500, 1000, 3000],
-      price: 4.50, 
-      baseUnits: 1000
-    },
-
-  function loadGameDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameName = urlParams.get('game');
-    const game = gameData[gameName];
-
-    if (!game) {
-      document.getElementById("headerMainTitle").textContent = "اللعبة غير متوفرة";
-      return;
-    }
-
-    // 1. تحديث العنوان الرئيسي والصورة
-    document.getElementById("pageTitle").textContent = game.title;
-    document.getElementById("headerMainTitle").textContent = game.title;
-    document.getElementById("gameImage").src = game.img;
-    document.getElementById("gameTitleSecondary").textContent = gameName; // اسم اللعبة تحت الصورة
-
-    // 2. تعيين متغيرات السعر
-    pricePerUnit = game.price;
-    unitsPerDollar = game.baseUnits;
-
-    // 3. تحديث الكميات والأزرار
-    quantitiesContainer.innerHTML = ''; 
-    game.amounts.forEach(amount => {
-      const button = document.createElement('button');
-      button.className = 'quantity-btn';
-      button.textContent = `💎 ${amount}`;
-      button.onclick = () => selectQuantity(button, amount);
-      quantitiesContainer.appendChild(button);
-    });
+    // بيانات المنتجات الافتراضية (يمكنك تخصيصها لكل لعبة)
+    const gameData = {
+        // هذه البيانات تجعل الصفحة تعمل بغض النظر عن اللعبة
+        'default': {
+            unitsPerDollar: 10, // مثال: كل 10 وحدات مقابل 1 دولار
+            pricePerUnit: 1,    // سعر الوحدة الأساسي
+            quantities: [50, 100, 200, 500, 1000] // الوحدات المتاحة للشراء
+        },
+        'FREE FIRE': {
+            unitsPerDollar: 50,
+            pricePerUnit: 1,
+            quantities: [100, 310, 520, 1060]
+        },
+        'شحن بيجي عالمي': {
+            unitsPerDollar: 60,
+            pricePerUnit: 1,
+            quantities: [60, 180, 300, 600, 1500]
+        }
+    };
     
-    updatePriceDisplay();
-  }
+    // 3. دالة جلب البيانات من الرابط
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
 
-  function updatePriceDisplay() {
-      if (selectedAmount !== null) {
-          // حساب السعر: (الكمية المطلوبة / وحدات السعر الأساسي) * سعر السعر الأساسي
-          const total = (selectedAmount / unitsPerDollar) * pricePerUnit;
-          priceBox.textContent = `💰 السعر: $${total.toFixed(2)}`;
-      } else {
-          priceBox.textContent = `💰 السعر: $0.00`;
-      }
-  }
+    // 4. تهيئة الصفحة
+    function initializePage() {
+        const gameName = getUrlParameter('game');
+        // استخدام بيانات اللعبة المحددة أو البيانات الافتراضية
+        const data = gameData[gameName] || gameData['default'];
+        
+        // تحديث العنوان
+        gameHeader.textContent = `🎮 شحن ${gameName}`;
 
-  function selectQuantity(btn, amount) {
-    document.querySelectorAll(".quantity-btn").forEach(b => b.classList.remove("selected"));
-    btn.classList.add("selected");
-    selectedAmount = amount;
-    updatePriceDisplay();
-  }
+        // إنشاء أزرار الكميات
+        data.quantities.forEach(amount => {
+            const btn = document.createElement('button');
+            btn.className = 'quantity-btn';
+            btn.textContent = `${amount} نقطة`;
+            btn.onclick = () => selectQuantity(btn, amount, data.unitsPerDollar, data.pricePerUnit);
+            quantitiesContainer.appendChild(btn);
+        });
+    }
 
-  function goBack() {
-    window.location.href = `index.html`; 
-  }
+    // 5. تحديث السعر
+    function updatePriceDisplay(selectedAmount, unitsPerDollar, pricePerUnit) {
+        if (selectedAmount !== null && unitsPerDollar && pricePerUnit) {
+            // formula: (selectedAmount / unitsPerDollar) * pricePerUnit 
+            // حيث pricePerUnit هو السعر الأساسي لوحدة القياس في gameData
+            const total = (selectedAmount / unitsPerDollar) * pricePerUnit;
+            priceBox.textContent = `💰 السعر: $${total.toFixed(2)}`;
+        } else {
+            priceBox.textContent = `💰 السعر: $0.00`;
+        }
+    }
 
-  function showToast(message) {
-    toastNotification.style.backgroundColor = '#e74c3c'; 
-    toastNotification.textContent = message;
-    toastNotification.classList.add("show");
+    // 6. اختيار الكمية
+    function selectQuantity(btn, amount, unitsPerDollar, pricePerUnit) {
+        document.querySelectorAll(".quantity-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        selectedAmount = amount; // تحديث الكمية المختارة
+        
+        // إعادة حساب وعرض السعر بناءً على البيانات الجديدة
+        updatePriceDisplay(selectedAmount, unitsPerDollar, pricePerUnit);
+    }
     
-    setTimeout(() => {
-      toastNotification.classList.remove("show");
-    }, 3000);
-  }
-
-  function chargeNow() {
-    const playerId = playerIdInput.value.trim();
-
-    if (!playerId) {
-      showToast("يجب وضع ايدي المستخدم");
-      playerIdInput.focus();
-      return;
+    // 7. العودة
+    function goBack() {
+        window.location.href = `index.html`; 
     }
 
-    if (selectedAmount === null) { 
-      showToast("يجب وضع الكمية");
-      return;
+    // 8. إظهار الإشعارات
+    function showToast(message, isSuccess = false) {
+        toastNotification.style.backgroundColor = isSuccess ? '#2ecc71' : '#e74c3c'; 
+        toastNotification.textContent = message;
+        toastNotification.classList.add("show");
+        
+        setTimeout(() => {
+            toastNotification.classList.remove("show");
+        }, 3000);
     }
 
-    // هذا هو مكان ربط عملية الدفع الحقيقية
-    showToast("رصيدك غير كاف"); 
-    // يمكنك تغيير هذه الرسالة إلى رسالة نجاح إذا كنت تجرب العملية بنجاح.
-    // مثال: showToast("✅ تم إرسال طلب الشحن بنجاح! ID: " + playerId);
-  }
+    // 9. دالة الشحن
+    function chargeNow() {
+        const playerId = playerIdInput.value.trim();
+
+        if (!playerId) {
+            showToast("يجب وضع إيدي المستخدم");
+            playerIdInput.focus();
+            return;
+        }
+
+        if (selectedAmount === null) { 
+            showToast("يجب اختيار الكمية");
+            return;
+        }
+
+        // --- هنا تبدأ عملية الدفع الحقيقية ---
+        
+        // جلب البيانات مرة أخرى لحساب السعر الفعلي للشحن
+        const gameName = getUrlParameter('game');
+        const data = gameData[gameName] || gameData['default'];
+        const totalCost = (selectedAmount / data.unitsPerDollar) * data.pricePerUnit;
+        
+        const message = `تم طلب شحن ${selectedAmount} نقطة لـ ID: ${playerId} بتكلفة $${totalCost.toFixed(2)}.`;
+        
+        // رسالة اختبار: يمكنك تغييرها حسب نظام الدفع الخاص بك
+        showToast(`⚠️ ${message} - رصيدك غير كاف حاليًا`, false); 
+        // أو إذا نجحت: showToast(`✅ تم إرسال طلب الشحن بنجاح! ${message}`, true);
+    }
+
+    // تشغيل تهيئة الصفحة عند التحميل
+    initializePage();
 </script>
 
 </body>
